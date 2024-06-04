@@ -3,6 +3,8 @@ package model.state;
 import model.Midia;
 
 public class Alugado implements Estado{
+
+
     @Override
     public void alugar(Midia m) {
         System.out.println("O item já está alugado.");
@@ -22,5 +24,10 @@ public class Alugado implements Estado{
     @Override
     public void cancelarReserva(Midia m) {
         System.out.println("O item não está reservado.");
+    }
+
+    @Override
+    public String obterEstado() {
+        return "ALUGADO";
     }
 }

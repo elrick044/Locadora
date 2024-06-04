@@ -23,4 +23,9 @@ public class Reservado implements Estado{
         System.out.println("Reserva cancelada com sucesso.");
         m.setEstado(new Disponivel());
     }
+
+    @Override
+    public String obterEstado() {
+        return "RESERVADO";
+    }
 }

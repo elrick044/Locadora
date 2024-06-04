@@ -22,4 +22,11 @@ public class EmManutencao implements Estado{
     public void cancelarReserva(Midia m) {
         System.out.println("O item não está reservado.");
     }
+
+    @Override
+    public String obterEstado() {
+        return "MANUTENCAO";
+    }
+
+
 }

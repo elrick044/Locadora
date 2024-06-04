@@ -7,4 +7,6 @@ public interface Estado {
     void devolver(Midia m);
     void reservar(Midia m);
     void cancelarReserva(Midia m);
+
+    String obterEstado();
 }
