@@ -1,8 +1,14 @@
 package controller;
 
+import Controller.AuthUser;
+import Controller.StrongEmailValidator;
+import Controller.StrongPasswordValidator;
 import model.Cliente;
 import view.IView;
 
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class ClienteController {
@@ -49,8 +55,20 @@ public class ClienteController {
         }
     }
 
-    public void cadastrar(){
+    public void cadastrar() {
+        Object novoCliente = v.detalhar();
 
+        try{
+            Method getEmailMethod = novoCliente.getClass().getMethod("getEmail",null);
+            String email = (String) getEmailMethod.invoke(novoCliente);
+        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        AuthUser a = new AuthUser(new StrongEmailValidator());
+        a.autenticar();
+        c.add((Cliente) novoCliente);
     }
 
     public void excluir(){
