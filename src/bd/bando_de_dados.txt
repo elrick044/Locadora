@@ -1,0 +1,95 @@
+use locadora;
+
+-- Criar tabela Genero
+CREATE TABLE Genero (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+
+-- Inserir valores na tabela Genero
+INSERT INTO Genero (nome) VALUES
+('ACAO'), ('COMEDIA'), ('DRAMA'), ('FANTASIA'), ('TERROR'), ('FICCAO_CIENTIFICA'),
+('ROMANCE'), ('DOCUMENTARIO'), ('ANIMACAO'), ('AVENTURA'), ('ROCK'), ('POP'),
+('JAZZ'), ('BLUES'), ('CLASSICA'), ('HIP_HOP'), ('ELETRONICA'), ('REGGAE'),
+('FUNK'), ('SERTANEJO'), ('MPB'), ('SAMBA'), ('FORRO');
+
+-- Criar tabela Midia com enums para Categoria e Estado
+CREATE TABLE Midia (
+    midiaId INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    categoria ENUM('JOGO', 'FILME', 'MUSICA') NOT NULL,
+    estado ENUM('DISPONIVEL', 'ALUGADO', 'RESERVADO') NOT NULL
+);
+
+-- Tabela de relacionamento entre Midia e Genero (muitos-para-muitos)
+CREATE TABLE Midia_Genero (
+    midiaId INT,
+    generoId INT,
+    PRIMARY KEY (midiaId, generoId),
+    FOREIGN KEY (midiaId) REFERENCES Midia(midiaId),
+    FOREIGN KEY (generoId) REFERENCES Genero(id)
+);
+
+-- Criar tabela Funcionario com enum para Cargo
+CREATE TABLE Funcionario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(50),
+    salario DOUBLE,
+    cargo ENUM('GERENTE', 'ATENDENTE', 'ADMINISTRATIVO', 'LIMPEZA') NOT NULL
+);
+
+-- Criar tabela Endereco
+CREATE TABLE Endereco (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rua VARCHAR(255),
+    cidade VARCHAR(255),
+    estado VARCHAR(255),
+    cep VARCHAR(20)
+);
+
+-- Criar tabela Cliente
+CREATE TABLE Cliente (
+    clienteId INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(50),
+    enderecoId INT,
+    FOREIGN KEY (enderecoId) REFERENCES Endereco(id)
+);
+
+-- Criar tabela Aluguel
+CREATE TABLE Aluguel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clienteId INT,
+    dataAluguel DATE,
+    dataDevolucao DATE,
+    preco DOUBLE,
+    FOREIGN KEY (clienteId) REFERENCES Cliente(clienteId)
+);
+
+-- Tabela de relacionamento entre Aluguel e Midia (muitos-para-muitos)
+CREATE TABLE Aluguel_Midia (
+    aluguelId INT,
+    midiaId INT,
+    PRIMARY KEY (aluguelId, midiaId),
+    FOREIGN KEY (aluguelId) REFERENCES Aluguel(id),
+    FOREIGN KEY (midiaId) REFERENCES Midia(midiaId)
+);
+
+-- Criar tabela Pagamento (assumindo estrutura básica)
+CREATE TABLE Pagamento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    valor DOUBLE NOT NULL,
+    dataPagamento DATE NOT NULL
+);
+
+-- Criar tabela Devolucao
+CREATE TABLE Devolucao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluguelId INT,
+    pagamentoId INT,
+    FOREIGN KEY (aluguelId) REFERENCES Aluguel(id),
+    FOREIGN KEY (pagamentoId) REFERENCES Pagamento(id)
+);
