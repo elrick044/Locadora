@@ -54,7 +54,6 @@ public class ClienteController {
             }
         }
     }
-
     public void cadastrar() {
         Object novoCliente = v.detalhar();
 
