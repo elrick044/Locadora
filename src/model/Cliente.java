@@ -5,24 +5,30 @@ import movimentacao.Aluguel;
 import java.util.List;
 
 public class Cliente {
-    public int clienteId;
-    public String name;
-    public String email;
-    public String telefone;
-    public Endereco endereco;
+    private int clienteId;
+    private String name;
+    private String email;
+    private String telefone;
+    private Endereco endereco;
 
-    public List<Aluguel> alugueis;
 
     public Cliente() {
     }
 
-    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco) {
         this.clienteId = clienteId;
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.alugueis = alugueis;
     }
 
     public int getClienteId() {
@@ -57,14 +63,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Aluguel> getAlugueis() {
-        return alugueis;
-    }
-
-    public void setAlugueis(List<Aluguel> alugueis) {
-        this.alugueis = alugueis;
-    }
-
     @Override
     public String toString() {
         return "Cliente{" +
@@ -73,7 +71,6 @@ public class Cliente {
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco=" + endereco +
-                ", alugueis=" + alugueis +
                 '}';
     }
 }

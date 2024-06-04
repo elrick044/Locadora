@@ -7,12 +7,36 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Aluguel {
+    public Aluguel(int id, Cliente cliente, ArrayList<Midia> midias, Date dataAluguel, Date dataDevolucao, double preco) {
+        this.id = id;
+        this.cliente = cliente;
+        this.midias = midias;
+        this.dataAluguel = dataAluguel;
+        this.dataDevolucao = dataDevolucao;
+        this.preco = preco;
+    }
+
+    public Aluguel() {
+    }
+
     private int id;
     private Cliente cliente;
     private ArrayList<Midia> midias;
     private Date dataAluguel;
     private Date dataDevolucao;
     private double preco;
+
+    @Override
+    public String toString() {
+        return "Aluguel{" +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", midias=" + midias +
+                ", dataAluguel=" + dataAluguel +
+                ", dataDevolucao=" + dataDevolucao +
+                ", preco=" + preco +
+                '}';
+    }
 
     public int getId() {
         return id;
