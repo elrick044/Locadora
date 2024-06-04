@@ -2,14 +2,18 @@ package com.company;
 
 import DAOs.MidiaDAO;
 import bd.DatabaseConnection;
+import controller.ClienteController;
 import controller.MidiaController;
 import factory.MediaFactory;
 import model.Categoria;
+import model.Cliente;
 import model.Genero;
 import model.Midia;
 import model.state.Disponivel;
 import model.state.Estado;
-import view.ViewPrincipal;
+import view.ViewCliente;
+import view.ViewMain;
+import view.ViewMidia;
 import view.IView;
 
 import java.sql.Connection;
@@ -66,8 +70,7 @@ public class Main {
 //        mc.devolver();
 //        mc.reservar();
 //        mc.cancelarReserva();
-
-         */
+//      */
 
     }
 }
