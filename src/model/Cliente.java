@@ -1,5 +1,7 @@
 package model;
 
+import movimentacao.Aluguel;
+
 import java.util.List;
 
 public class Cliente {
