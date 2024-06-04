@@ -9,7 +9,7 @@ public class DatabaseConnection {
     private Connection connection;
     private String url = "jdbc:mysql://localhost:3306/locadora";
     private String username = "root";
-    private String password = "260405";
+    private String password = "0406";
 
     private DatabaseConnection() throws SQLException {
         try {

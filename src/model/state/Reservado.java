@@ -4,6 +4,11 @@ import model.Midia;
 
 public class Reservado implements Estado{
     @Override
+    public String nome() {
+        return "Reservado";
+    }
+
+    @Override
     public void alugar(Midia m) {
         System.out.println("O item está reservado e não pode ser alugado.");
     }

@@ -1,49 +1,69 @@
 package com.company;
 
-import bd.DatabaseConnection;
+import controller.ClienteController;
 import controller.MidiaController;
 import factory.MediaFactory;
 import model.Categoria;
+import model.Cliente;
 import model.Genero;
 import model.Midia;
 import model.state.Disponivel;
-import view.ViewPrincipal;
+import view.ViewCliente;
+import view.ViewMain;
+import view.ViewMidia;
 import view.IView;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args)  {
+        IView v = new ViewMain();
+        List<Midia> m = new ArrayList<Midia>();
+        List<Cliente> c = new ArrayList<Cliente>();
+        m.add(MediaFactory.createMedia(1, "Jorge", Arrays.asList(Genero.AVENTURA, Genero.ANIMACAO), Categoria.FILME, new Disponivel()));
+        c.add(new Cliente());
+        int op;
 
-        String sql = "INSERT INTO teste (nome) VALUES (?)";
-        try {
-            Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, "Erico");
+        while(true) {
+            System.out.println();
+            op = v.exibirMenu();
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            switch (op) {
+                case 1:
+                    ClienteController cc = new ClienteController(c, new ViewCliente());
+                    cc.iniciar();
+                    break;
+                case 2:
+                    MidiaController mc = new MidiaController(m, new ViewMidia());
+                    mc.iniciar();
+                    break;
+                case 3:
+                    v.exibirMensagem("Saindo...");
+                    break;
+                default:
+                    v.exibirMensagem("Opção inválida.");
+            }
+
+            if(op == 3){
+                break;
+            }
         }
 
-        /*
-        IView v = new ViewPrincipal();
-        Midia m = MediaFactory.createMedia(0, "Jorge", Arrays.asList(Genero.AVENTURA, Genero.ANIMACAO), Categoria.FILME, new Disponivel());
 
-        MidiaController mc = new MidiaController(m, v);
+//        MidiaController mc = new MidiaController(m, new ViewMidia());
+//
+//        mc.v.exibirMenu();
+//
+//        mc.alugar();
+//        mc.reservar();
+//        mc.devolver();
+//        mc.reservar();
+//        mc.cancelarReserva();
 
-        mc.alugar();
-        mc.reservar();
-        mc.devolver();
-        mc.reservar();
-        mc.cancelarReserva();
-
-         */
 
     }
 }
