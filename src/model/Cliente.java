@@ -11,6 +11,7 @@ public class Cliente {
     private String telefone;
     private Endereco endereco;
 
+    public List<Aluguel> alugueis;
 
     public Cliente() {
     }
@@ -24,11 +25,20 @@ public class Cliente {
     }
 
     public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco) {
+    public Cliente(String name, String email, String telefone, Endereco endereco) {
+        this.name = name;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis) {
         this.clienteId = clienteId;
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.alugueis = alugueis;
     }
 
     public int getClienteId() {

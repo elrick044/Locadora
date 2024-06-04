@@ -6,6 +6,11 @@ public class Alugado implements Estado{
 
 
     @Override
+    public String nome() {
+        return "Alugado";
+    }
+
+    @Override
     public void alugar(Midia m) {
         System.out.println("O item já está alugado.");
     }

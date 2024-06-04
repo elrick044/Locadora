@@ -64,13 +64,11 @@ public class Midia {
 
     @Override
     public String toString() {
-        return "Midia{" +
-                "midiaId=" + midiaId +
-                ", titulo='" + titulo + '\'' +
-                ", genero=" + genero +
-                ", categoria=" + categoria +
-                ", disponivel=" + estado +
-                '}';
+        return midiaId +
+                " - " + titulo +
+                " (" + categoria + ")\n" +
+                "Gênero: " + genero + "\n" +
+                "Situação: " + estado.nome();
     }
 
     public void devolver(){

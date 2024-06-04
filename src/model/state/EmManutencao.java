@@ -4,6 +4,11 @@ import model.Midia;
 
 public class EmManutencao implements Estado{
     @Override
+    public String nome() {
+        return "Em manutenção";
+    }
+
+    @Override
     public void alugar(Midia m) {
         System.out.println("O item está em manutenção e não pode ser alugado.");
     }

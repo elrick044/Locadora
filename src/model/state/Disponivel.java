@@ -3,6 +3,10 @@ package model.state;
 import model.Midia;
 
 public class Disponivel implements Estado {
+    @Override
+    public String nome() {
+        return "Disponível";
+    }
 
     @Override
     public void alugar(Midia m) {

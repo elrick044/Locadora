@@ -1,20 +1,17 @@
 package controller;
 
-import model.Categoria;
-import model.Genero;
-import model.Midia;
-import model.state.Estado;
+import model.Cliente;
 import view.IView;
 
 import java.util.List;
 
-public class MidiaController {
-    public List<Midia> m;
+public class ClienteController {
+    public List<Cliente> c;
     public IView v;
 
-    public MidiaController(List<Midia> midias, IView view) {
-        this.m = midias;
-        this.v = view;
+    public ClienteController(List<Cliente> c, IView v) {
+        this.c = c;
+        this.v = v;
     }
 
     public void iniciar() {
@@ -25,19 +22,19 @@ public class MidiaController {
             switch (opcao) {
                 case 1:
                     System.out.println();
-                    v.listar(m);
+                    v.listar(c);
                     break;
                 case 2:
-                    alugar();
+                    cadastrar();
                     break;
                 case 3:
-                    devolver();
+                    excluir();
                     break;
                 case 4:
-                    reservar();
+                    editar();
                     break;
                 case 5:
-                    cancelarReserva();
+                    buscar();
                     break;
                 case 6:
                     v.exibirMensagem("Saindo...");
@@ -52,19 +49,19 @@ public class MidiaController {
         }
     }
 
-    public void devolver(){
-        //m.devolver();
+    public void cadastrar(){
+
     }
 
-    public void alugar(){
-       // m.alugar();
+    public void excluir(){
+
     }
 
-    public void reservar(){
-      //  m.reservar();
+    public void editar(){
+
     }
 
-    public void cancelarReserva(){
-        //m.cancelarReserva();
+    public void buscar(){
+
     }
 }
