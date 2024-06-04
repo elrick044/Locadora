@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static DatabaseConnection instance;
-    private Connection connection;
-    private String url = "jdbc:mysql://localhost:3306/locadora";
-    private String username = "root";
-    private String password = "0406";
+    private final Connection connection;
+    private final String url = "jdbc:mysql://localhost:3306/locadora";
+    private final String username = "root";
+    private final String password = "260405";
 
     private DatabaseConnection() throws SQLException {
         try {
