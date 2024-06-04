@@ -1,6 +1,7 @@
 package com.company;
 
 import controller.MidiaController;
+import factory.MediaFactory;
 import model.Categoria;
 import model.Genero;
 import model.Midia;
@@ -14,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         IView v = new ViewPrincipal();
-        Midia m = new Midia(0, "Jorge", Arrays.asList(Genero.AVENTURA, Genero.ANIMACAO), Categoria.FILME, new Disponivel());
+        Midia m = MediaFactory.createMedia(0, "Jorge", Arrays.asList(Genero.AVENTURA, Genero.ANIMACAO), Categoria.FILME, new Disponivel());
 
         MidiaController mc = new MidiaController(m, v);
 
@@ -23,9 +24,6 @@ public class Main {
         mc.devolver();
         mc.reservar();
         mc.cancelarReserva();
-
-
-
 
     }
 }
