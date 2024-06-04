@@ -1,5 +1,6 @@
 package com.company;
 
+import DAOs.AluguelDAO;
 import DAOs.MidiaDAO;
 import bd.DatabaseConnection;
 import controller.ClienteController;
@@ -59,6 +60,8 @@ public class Main {
             }
         }
 
+
+
         //MidiaController mc = new MidiaController(m, v);
 
 //        MidiaController mc = new MidiaController(m, new ViewMidia());
@@ -70,7 +73,6 @@ public class Main {
 //        mc.devolver();
 //        mc.reservar();
 //        mc.cancelarReserva();
-//      */
-
+//
     }
 }

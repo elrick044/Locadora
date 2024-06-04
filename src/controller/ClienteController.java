@@ -76,7 +76,7 @@ public class ClienteController {
 
 
         AuthUser a = new AuthUser(new StrongEmailValidator(),new StrongPasswordValidator());
-        if(a.autenticar(email, senha, nome)) c.add((Cliente) novoCliente);
+        //if(a.autenticar(email, senha, nome)) c.add((Cliente) novoCliente);
     }
 
     public void excluir(){
