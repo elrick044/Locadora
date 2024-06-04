@@ -56,18 +56,27 @@ public class ClienteController {
     }
     public void cadastrar() {
         Object novoCliente = v.detalhar();
+        String email = null;
+        String senha = null;
+        String nome = null;
 
         try{
             Method getEmailMethod = novoCliente.getClass().getMethod("getEmail",null);
-            String email = (String) getEmailMethod.invoke(novoCliente);
+            email = (String) getEmailMethod.invoke(novoCliente);
+
+            Method getSenhaMethod = novoCliente.getClass().getMethod("getSenha",null);
+            senha = (String) getEmailMethod.invoke(novoCliente);
+
+            Method getNomeMethod = novoCliente.getClass().getMethod("getNome",null);
+            nome = (String) getEmailMethod.invoke(novoCliente);
+
         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
 
 
-        AuthUser a = new AuthUser(new StrongEmailValidator());
-        a.autenticar();
-        c.add((Cliente) novoCliente);
+        AuthUser a = new AuthUser(new StrongEmailValidator(),new StrongPasswordValidator());
+        if(a.autenticar(email, senha, nome)) c.add((Cliente) novoCliente);
     }
 
     public void excluir(){

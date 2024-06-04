@@ -10,34 +10,31 @@ public class Cliente {
     private String email;
     private String telefone;
     private Endereco endereco;
+    private String senha;
 
     public List<Aluguel> alugueis;
 
     public Cliente() {
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco) {
+    public Cliente(String name, String email, String telefone, Endereco endereco, String senha) {
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.senha = senha;
     }
 
-    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis) {
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis, String senha) {
         this.clienteId = clienteId;
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
         this.alugueis = alugueis;
+        this.senha = senha;
     }
 
     public int getClienteId() {
@@ -70,6 +67,22 @@ public class Cliente {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

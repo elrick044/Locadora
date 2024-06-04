@@ -53,9 +53,12 @@ public class ViewCliente implements IView<Cliente> {
         System.out.print("Digite CEP: ");
         String cep = scanner.nextLine();
 
+        System.out.println("Digite senha:");
+        String senha = scanner.nextLine();
+
         Endereco endereco = new Endereco(rua, cidade, estado, cep);
 
-        return new Cliente(name, email, telefone, endereco);
+        return new Cliente(name, email, telefone, endereco, senha);
     }
 
     @Override
