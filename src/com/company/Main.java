@@ -1,18 +1,20 @@
 package com.company;
 
-import controller.ClienteController;
+import DAOs.MidiaDAO;
+import bd.DatabaseConnection;
 import controller.MidiaController;
 import factory.MediaFactory;
 import model.Categoria;
-import model.Cliente;
 import model.Genero;
 import model.Midia;
 import model.state.Disponivel;
-import view.ViewCliente;
-import view.ViewMain;
-import view.ViewMidia;
+import model.state.Estado;
+import view.ViewPrincipal;
 import view.IView;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,6 +55,7 @@ public class Main {
             }
         }
 
+        MidiaController mc = new MidiaController(m, v);
 
 //        MidiaController mc = new MidiaController(m, new ViewMidia());
 //
@@ -64,6 +67,7 @@ public class Main {
 //        mc.reservar();
 //        mc.cancelarReserva();
 
+         */
 
     }
 }
