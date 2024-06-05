@@ -87,7 +87,6 @@ public class MidiaDAO {
 
                 switch (estado) {
                     case "DISPONIVEL" -> midia.setEstado(new Disponivel());
-                    case "RESERVADO" -> midia.setEstado(new Reservado());
                     case "ALUGADO" -> midia.setEstado(new Alugado());
                 }
 
@@ -116,7 +115,6 @@ public class MidiaDAO {
 
                     switch (estado) {
                         case "DISPONIVEL" -> midia.setEstado(new Disponivel());
-                        case "RESERVADO" -> midia.setEstado(new Reservado());
                         case "ALUGADO" -> midia.setEstado(new Alugado());
                     }
                 }

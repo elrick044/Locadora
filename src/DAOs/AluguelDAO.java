@@ -55,7 +55,6 @@ public class AluguelDAO {
             try (Connection connection = DatabaseConnection.getInstance().getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_ALUGUEL_MIDIA)) {
                 for (int i = 0; i < aluguel.getMidias().size(); i++) {
-                    System.out.println("" + id);
                     preparedStatement.setInt(1, id);
                     preparedStatement.setInt(2, aluguel.getMidias().get(i).getMidiaId());
                     preparedStatement.executeUpdate();
