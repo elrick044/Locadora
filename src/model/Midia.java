@@ -87,11 +87,4 @@ public class Midia {
         estado.alugar(this);
     }
 
-    public void reservar(){
-        estado.reservar(this);
-    }
-
-    public void cancelarReserva(){
-        estado.cancelarReserva(this);
-    }
 }
