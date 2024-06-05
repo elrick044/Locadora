@@ -34,8 +34,6 @@ public class ClienteDAO {
         }
     }
 
-
-
     public int atualizarCliente(Cliente cliente) {
         int id = 0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -106,7 +104,6 @@ public class ClienteDAO {
         return clientes;
     }
 
-
     public Cliente buscarClientePorId(int clienteId) {
         Cliente cliente = null;
         int enderecoId = 0;
@@ -135,6 +132,4 @@ public class ClienteDAO {
 
         return cliente;
     }
-
-
 }

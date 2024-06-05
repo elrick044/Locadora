@@ -69,8 +69,6 @@ public class DevolucaoDAO {
         }
     }
 
-
-
     public List<Devolucao> listarDevolucoes() {
         List<Devolucao> devolucoes = new ArrayList<>();
         AluguelDAO aluguelDAO = new AluguelDAO(); // Instância do DAO de Aluguel
@@ -141,7 +139,7 @@ public class DevolucaoDAO {
         }
 
         // Associar o aluguel após fechar o ResultSet
-        if (idAluguel > 0 && devolucao != null) {
+        if (idAluguel > 0) {
             devolucao.setAluguel(aluguelDAO.buscarAluguelPorId(idAluguel));
         }
 
