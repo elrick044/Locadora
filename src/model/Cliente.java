@@ -14,6 +14,15 @@ public class Cliente {
 
     public List<Aluguel> alugueis;
 
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, String senha) {
+        this.clienteId = clienteId;
+        this.name = name;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.senha = senha;
+    }
+
     public Cliente() {
     }
 

@@ -6,4 +6,9 @@ public class CartaoDeCredito implements Pagamento{
     public void pagar() {
         System.out.println("Pagamento realizado com cartao de crédito");
     }
+
+    @Override
+    public String obterMetodo() {
+        return "CREDITO";
+    }
 }

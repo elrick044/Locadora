@@ -12,7 +12,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../ProjetosLAMB/ProjetoComponente/target/ProjetoComponente-1.0-SNAPSHOT.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/artifacts/ProjetoComponente_jar/ProjetoComponente.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

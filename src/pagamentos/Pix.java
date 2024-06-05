@@ -5,4 +5,9 @@ public class Pix implements Pagamento{
     public void pagar() {
         System.out.println("Pagamento realizado com Pix");
     }
+
+    @Override
+    public String obterMetodo() {
+        return "PIX";
+    }
 }

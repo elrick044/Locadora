@@ -7,14 +7,23 @@ import java.util.List;
 public class Midia {
     private int midiaId;
     private String titulo;
-    private List<Genero> genero;
+    private Genero genero;
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
     private Categoria categoria;
     private Estado estado;
 
     public Midia() {
     }
 
-    public Midia(int midiaId, String titulo, List<Genero> genero, Categoria categoria, Estado estado) {
+    public Midia(int midiaId, String titulo, Genero genero, Categoria categoria, Estado estado) {
         this.midiaId = midiaId;
         this.titulo = titulo;
         this.genero = genero;
@@ -36,14 +45,6 @@ public class Midia {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public List<Genero> getGenero() {
-        return genero;
-    }
-
-    public void setGenero(List<Genero> genero) {
-        this.genero = genero;
     }
 
     public Categoria getCategoria() {
