@@ -58,7 +58,7 @@ public class ClienteController {
     public void adicionar() {
         Cliente aux = (Cliente) v.detalhar();
 
-        edao.inserirEndereco(aux.getEndereco());
+        aux.getEndereco().setId(edao.inserirEndereco(aux.getEndereco()));
         cdao.inserirCliente(aux);
     }
 
