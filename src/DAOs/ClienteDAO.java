@@ -3,7 +3,6 @@ package DAOs;
 import bd.DatabaseConnection;
 import factory.DAOFactory;
 import model.Cliente;
-import model.Endereco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
