@@ -69,6 +69,7 @@ public class ClienteController {
         Cliente aux = (Cliente) v.detalhar();
         aux.setClienteId(select.getClienteId());
 
+        aux.getEndereco().setId(select.getEndereco().getId());
         edao.atualizarEndereco(aux.getEndereco());
         cdao.atualizarCliente(aux);
     }

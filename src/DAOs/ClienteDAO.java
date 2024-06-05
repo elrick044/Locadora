@@ -42,7 +42,7 @@ public class ClienteDAO {
             preparedStatement.setString(1, cliente.getName());
             preparedStatement.setString(2, cliente.getEmail());
             preparedStatement.setString(3, cliente.getTelefone());
-            preparedStatement.setString(4, cliente.getEndereco().toString()); // Supondo que o endereço possa ser convertido para String
+            preparedStatement.setString(4, String.valueOf(cliente.getEndereco().getId())); // Supondo que o endereço possa ser convertido para String
             preparedStatement.setInt(5, cliente.getClienteId());
 
             preparedStatement.executeUpdate();
