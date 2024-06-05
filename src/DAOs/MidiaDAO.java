@@ -78,7 +78,6 @@ public class MidiaDAO {
                     case "DISPONIVEL" -> midia.setEstado(new Disponivel());
                     case "RESERVADO" -> midia.setEstado(new Reservado());
                     case "ALUGADO" -> midia.setEstado(new Alugado());
-                    case "MANUTENCAO" -> midia.setEstado(new EmManutencao());
                 }
 
 
@@ -108,7 +107,6 @@ public class MidiaDAO {
                         case "DISPONIVEL" -> midia.setEstado(new Disponivel());
                         case "RESERVADO" -> midia.setEstado(new Reservado());
                         case "ALUGADO" -> midia.setEstado(new Alugado());
-                        case "MANUTENCAO" -> midia.setEstado(new EmManutencao());
                     }
                 }
             }

@@ -32,6 +32,6 @@ public class Disponivel implements Estado {
 
     @Override
     public String obterEstado() {
-        return null;
+        return "DISPONIVEL";
     }
 }
