@@ -1,5 +1,8 @@
 package view;
 
+import Controller.*;
+import factory.ClienteFactory;
+import factory.EnderecoFactory;
 import model.Cliente;
 import model.Endereco;
 import model.Midia;
@@ -32,11 +35,22 @@ public class ViewCliente implements IView<Cliente> {
 
     @Override
     public Cliente detalhar() {
+        String email = null;
+        String senha = null;
+
+        EmailValidator emailV = new StrongEmailValidator();
+        PasswordValidator passV = new StrongPasswordValidator();
+
+        scanner.nextLine();
         System.out.print("Digite nome: ");
         String name = scanner.nextLine();
 
-        System.out.print("Digite email: ");
-        String email = scanner.nextLine();
+       do{
+            System.out.print("Digite email: ");
+            email = scanner.nextLine();
+            if(!emailV.isValid(email)) System.out.println("Email inválido");
+       }while(!emailV.isValid(email));
+
 
         System.out.print("Digite telefone: ");
         String telefone = scanner.nextLine();
@@ -53,12 +67,15 @@ public class ViewCliente implements IView<Cliente> {
         System.out.print("Digite CEP: ");
         String cep = scanner.nextLine();
 
-        System.out.println("Digite senha:");
-        String senha = scanner.nextLine();
+        do{
+            System.out.print("Digite senha: ");
+            senha = scanner.nextLine();
+            if(!passV.isValid(senha)) System.out.println("Senha inválido");
+        }while(!passV.isValid(senha));
 
-        Endereco endereco = new Endereco(rua, cidade, estado, cep);
+        Endereco endereco = EnderecoFactory.createEndereco(rua, cidade, estado, cep);
 
-        return new Cliente(name, email, telefone, endereco, senha);
+        return ClienteFactory.createCliente(name, email, telefone, endereco, senha);
     }
 
     @Override
