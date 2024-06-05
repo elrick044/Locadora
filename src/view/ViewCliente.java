@@ -1,6 +1,7 @@
 package view;
 
 import Controller.*;
+import DAOs.EnderecoDAO;
 import factory.ClienteFactory;
 import factory.EnderecoFactory;
 import model.Cliente;

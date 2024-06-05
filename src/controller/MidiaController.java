@@ -1,10 +1,12 @@
 package controller;
 
+import DAOs.AluguelDAO;
 import DAOs.MidiaDAO;
 import model.Categoria;
 import model.Genero;
 import model.Midia;
 import model.state.Estado;
+import movimentacao.Aluguel;
 import view.IView;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public class MidiaController {
     public List<Midia> m;
     public IView v;
     public MidiaDAO mdao = new MidiaDAO();
+    public AluguelDAO adao = new AluguelDAO();
 
     public MidiaController(List<Midia> midias, IView view) {
         this.m = midias;
@@ -31,41 +34,29 @@ public class MidiaController {
                     v.listar(m);
                     break;
                 case 2:
-                    alugar();
-                    break;
-                case 3:
-                    devolver();
-                    break;
-                case 4:
-                    reservar();
-                    break;
-                case 5:
-                    cancelarReserva();
-                    break;
-                case 6:
                     adicionar();
                     break;
-                case 7:
+                case 3:
                     editar();
                     break;
-                case 8:
+                case 4:
                     remover();
                     break;
-                case 9:
+                case 5:
                     v.exibirMensagem("Saindo...");
                     break;
                 default:
                     v.exibirMensagem("Opção inválida.");
             }
 
-            if(opcao == 9){
+            if(opcao == 5){
                 break;
             }
         }
     }
 
-    public void devolver(){
-        Midia aux = mdao.buscarMidiaPorId(v.lerID(m));
+    public void devolver(int id){
+        Midia aux = mdao.buscarMidiaPorId(id);
         int pos = procurarPosicaoPorId(m, aux.getMidiaId());
 
         if(pos == -1){
@@ -76,8 +67,8 @@ public class MidiaController {
         }
     }
 
-    public void alugar(){
-        Midia aux = mdao.buscarMidiaPorId(v.lerID(m));
+    public void alugar(int id){
+        Midia aux = mdao.buscarMidiaPorId(id);
         int pos = procurarPosicaoPorId(m, aux.getMidiaId());
 
         if(pos == -1){

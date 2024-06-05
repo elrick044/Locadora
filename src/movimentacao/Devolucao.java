@@ -29,6 +29,11 @@ public class Devolucao {
         this.pagamento = pagamento;
     }
 
+    public Devolucao(Aluguel aluguel, Pagamento pagamento) {
+        this.aluguel = aluguel;
+        this.pagamento = pagamento;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

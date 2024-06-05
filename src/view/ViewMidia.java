@@ -17,14 +17,10 @@ public class ViewMidia implements IView<Midia>{
     public int exibirMenu() {
         System.out.println("=== Mídias ===");
         System.out.println("1. Listar mídias");
-        System.out.println("2. Alugar mídia");
-        System.out.println("3. Devolver mídia");
-        System.out.println("4. Reservar mídia");
-        System.out.println("5. Cancelar reserva");
-        System.out.println("6. Adicionar mídia");
-        System.out.println("7. Editar mídia");
-        System.out.println("8. Remover mídia");
-        System.out.println("9. Sair");
+        System.out.println("2. Adicionar mídia");
+        System.out.println("3. Editar mídia");
+        System.out.println("4. Remover mídia");
+        System.out.println("5. Sair");
         System.out.print("Escolha uma opção: ");
         return scanner.nextInt();
     }

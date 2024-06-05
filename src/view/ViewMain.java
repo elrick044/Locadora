@@ -13,7 +13,9 @@ public class ViewMain implements IView<Object>{
         System.out.println("=== Videolocadora ===");
         System.out.println("1. Clientes");
         System.out.println("2. Mídias");
-        System.out.println("3. Sair");
+        System.out.println("3. Aluguel");
+        System.out.println("4. Devolução");
+        System.out.println("5. Sair");
         System.out.print("Escolha uma opção: ");
         return scanner.nextInt();
     }

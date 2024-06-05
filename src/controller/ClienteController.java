@@ -1,7 +1,9 @@
 package controller;
 
 import DAOs.ClienteDAO;
+import DAOs.EnderecoDAO;
 import model.Cliente;
+import model.Endereco;
 import view.IView;
 
 
@@ -13,6 +15,7 @@ public class ClienteController {
     public List<Cliente> c;
     public IView v;
     public ClienteDAO cdao = new ClienteDAO();
+    public EnderecoDAO edao = new EnderecoDAO();
 
     public ClienteController(List<Cliente> c, IView v) {
         this.c = c;
@@ -53,7 +56,10 @@ public class ClienteController {
     }
 
     public void adicionar() {
-        cdao.inserirCliente((Cliente) v.detalhar());
+        Cliente aux = (Cliente) v.detalhar();
+
+        edao.inserirEndereco(aux.getEndereco());
+        cdao.inserirCliente(aux);
     }
 
     public void editar(){
@@ -63,6 +69,7 @@ public class ClienteController {
         Cliente aux = (Cliente) v.detalhar();
         aux.setClienteId(select.getClienteId());
 
+        edao.atualizarEndereco(aux.getEndereco());
         cdao.atualizarCliente(aux);
     }
 

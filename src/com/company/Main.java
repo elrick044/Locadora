@@ -2,7 +2,9 @@ package com.company;
 
 import DAOs.*;
 import bd.DatabaseConnection;
+import controller.AluguelController;
 import controller.ClienteController;
+import controller.DevolucaoController;
 import controller.MidiaController;
 import factory.MediaFactory;
 import model.*;
@@ -11,10 +13,7 @@ import model.state.Estado;
 import movimentacao.Aluguel;
 import movimentacao.Devolucao;
 import pagamentos.Pix;
-import view.ViewCliente;
-import view.ViewMain;
-import view.ViewMidia;
-import view.IView;
+import view.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +30,8 @@ public class Main {
         IView v = new ViewMain();
         List<Midia> m = new ArrayList<Midia>();
         List<Cliente> c = new ArrayList<Cliente>();
+        List<Aluguel> a = new ArrayList<Aluguel>();
+        List<Devolucao> d = new ArrayList<Devolucao>();
         int op;
 
         while(true) {
@@ -47,13 +48,21 @@ public class Main {
                     mc.iniciar();
                     break;
                 case 3:
+                    AluguelController ac = new AluguelController(a, new ViewAluguel());
+                    ac.iniciar();
+                    break;
+                case 4:
+                    DevolucaoController dc = new DevolucaoController(d, new ViewDevolucao());
+                    dc.iniciar();
+                    break;
+                case 5:
                     v.exibirMensagem("Saindo...");
                     break;
                 default:
                     v.exibirMensagem("Opção inválida.");
             }
 
-            if(op == 3){
+            if(op == 5){
                 break;
             }
         }
