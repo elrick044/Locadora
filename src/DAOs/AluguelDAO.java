@@ -1,12 +1,8 @@
 package DAOs;
 
 import bd.DatabaseConnection;
-import model.Categoria;
+import factory.DAOFactory;
 import model.Midia;
-import model.state.Alugado;
-import model.state.Disponivel;
-import model.state.EmManutencao;
-import model.state.Reservado;
 import movimentacao.Aluguel;
 
 import java.sql.Connection;
@@ -27,8 +23,8 @@ public class AluguelDAO {
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Aluguel WHERE id = ?";
     private static final String DELETE_ALUGUEL_MIDIA_QUERY = "DELETE FROM aluguel_midia WHERE aluguelId = ?";
 
-    private final ClienteDAO clienteDAO = new ClienteDAO();
-    private final MidiaDAO midiaDAO = new MidiaDAO();
+    private final ClienteDAO clienteDAO = DAOFactory.criarClienteDAO();
+    private final MidiaDAO midiaDAO = DAOFactory.criarMidiaDAO();
 
 
     public void inserirAluguel(Aluguel aluguel) {

@@ -1,6 +1,7 @@
 package DAOs;
 
 import bd.DatabaseConnection;
+import factory.DAOFactory;
 import movimentacao.Devolucao;
 import pagamentos.CartaoDeCredito;
 import pagamentos.CartaoDeDebito;
@@ -21,7 +22,7 @@ public class DevolucaoDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Devolucao";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Devolucao WHERE id = ?";
 
-    private final AluguelDAO aluguelDAO = new AluguelDAO();
+    private final AluguelDAO aluguelDAO = DAOFactory.criarAluguelDAO();
 
     public void inserirDevolucao(Devolucao devolucao) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();

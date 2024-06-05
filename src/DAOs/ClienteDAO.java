@@ -1,6 +1,7 @@
 package DAOs;
 
 import bd.DatabaseConnection;
+import factory.DAOFactory;
 import model.Cliente;
 import model.Endereco;
 
@@ -17,7 +18,7 @@ public class ClienteDAO {
     private static final String DELETE_QUERY = "DELETE FROM Cliente WHERE clienteId = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Cliente";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Cliente WHERE clienteId = ?";
-    private final EnderecoDAO enderecoDAO = new EnderecoDAO();//mudar para a criação com factory
+    private final EnderecoDAO enderecoDAO = DAOFactory.criarEnderecoDAO();//mudar para a criação com factory
 
     public void inserirCliente(Cliente cliente) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
