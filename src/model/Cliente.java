@@ -10,38 +10,34 @@ public class Cliente {
     private String email;
     private String telefone;
     private Endereco endereco;
-    private String senha;
 
     public List<Aluguel> alugueis;
 
-    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, String senha) {
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco) {
         this.clienteId = clienteId;
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.senha = senha;
     }
 
     public Cliente() {
     }
 
-    public Cliente(String name, String email, String telefone, Endereco endereco, String senha) {
+    public Cliente(String name, String email, String telefone, Endereco endereco) {
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.senha = senha;
     }
 
-    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis, String senha) {
+    public Cliente(int clienteId, String name, String email, String telefone, Endereco endereco, List<Aluguel> alugueis) {
         this.clienteId = clienteId;
         this.name = name;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
         this.alugueis = alugueis;
-        this.senha = senha;
     }
 
     public int getClienteId() {
@@ -76,14 +72,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getName() {
         return name;
     }
@@ -100,7 +88,6 @@ public class Cliente {
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco=" + endereco +
-                ", senha='" + senha + '\'' +
                 ", alugueis=" + alugueis +
                 '}';
     }

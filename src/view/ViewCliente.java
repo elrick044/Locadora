@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ViewCliente implements IView<Cliente> {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public int exibirMenu() {
@@ -36,10 +36,9 @@ public class ViewCliente implements IView<Cliente> {
     @Override
     public Cliente detalhar() {
         String email = null;
-        String senha = null;
 
         EmailValidator emailV = new StrongEmailValidator();
-        PasswordValidator passV = new StrongPasswordValidator();
+        //PasswordValidator passV = new StrongPasswordValidator();
 
         scanner.nextLine();
         System.out.print("Digite nome: ");
@@ -67,15 +66,9 @@ public class ViewCliente implements IView<Cliente> {
         System.out.print("Digite CEP: ");
         String cep = scanner.nextLine();
 
-        do{
-            System.out.print("Digite senha: ");
-            senha = scanner.nextLine();
-            if(!passV.isValid(senha)) System.out.println("Senha inválido");
-        }while(!passV.isValid(senha));
-
         Endereco endereco = EnderecoFactory.createEndereco(rua, cidade, estado, cep);
 
-        return ClienteFactory.createCliente(name, email, telefone, endereco, senha);
+        return ClienteFactory.createCliente(name, email, telefone, endereco);
     }
 
     @Override
