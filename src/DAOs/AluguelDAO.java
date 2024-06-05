@@ -27,7 +27,7 @@ public class AluguelDAO {
     private final MidiaDAO midiaDAO = DAOFactory.criarMidiaDAO();
 
 
-    public void inserirAluguel(Aluguel aluguel) {
+    public int inserirAluguel(Aluguel aluguel) {
         int id = 0;
 
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -64,6 +64,8 @@ public class AluguelDAO {
                 e.printStackTrace();
             }
         }
+
+        return id;
     }
 
     public List<Aluguel> listarAlugueis() {

@@ -36,7 +36,8 @@ public class ClienteDAO {
 
 
 
-    public void atualizarCliente(Cliente cliente) {
+    public int atualizarCliente(Cliente cliente) {
+        int id = 0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
             preparedStatement.setString(1, cliente.getName());
@@ -46,9 +47,19 @@ public class ClienteDAO {
             preparedStatement.setInt(5, cliente.getClienteId());
 
             preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1); // Get the first generated key
+                } else {
+                    throw new SQLException("A criação do endereço falhou, nenhum ID obtido.");
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return id;
     }
 
     public void excluirCliente(int clienteId) {

@@ -24,15 +24,27 @@ public class DevolucaoDAO {
 
     private final AluguelDAO aluguelDAO = DAOFactory.criarAluguelDAO();
 
-    public void inserirDevolucao(Devolucao devolucao) {
+    public int inserirDevolucao(Devolucao devolucao) {
+        int id =0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
             preparedStatement.setInt(1, devolucao.getAluguel().getId());
             preparedStatement.setString(2, devolucao.getPagamento().obterMetodo());
             preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1); // Get the first generated key
+                } else {
+                    throw new SQLException("A criação do endereço falhou, nenhum ID obtido.");
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return id;
     }
 
     public void atualizarDevolucao(Devolucao devolucao) {
