@@ -17,18 +17,29 @@ public class EnderecoDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Endereco";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Endereco WHERE id = ?";
 
-    public void inserirEndereco(Endereco endereco) {
+    public int inserirEndereco(Endereco endereco) {
+        int id = 0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, endereco.getRua());
             preparedStatement.setString(2, endereco.getCidade());
             preparedStatement.setString(3, endereco.getEstado());
             preparedStatement.setString(4, endereco.getCep());
 
             preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1); // Get the first generated key
+                } else {
+                    throw new SQLException("A criação do endereço falhou, nenhum ID obtido.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return id;
     }
 
     public void atualizarEndereco(Endereco endereco) {
