@@ -23,7 +23,7 @@ public class MidiaDAO {
     public int inserirMidia(Midia midia) {
         int id = 0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, midia.getTitulo());
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());

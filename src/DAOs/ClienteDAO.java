@@ -22,7 +22,7 @@ public class ClienteDAO {
 
     public void inserirCliente(Cliente cliente) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, cliente.getName());
             preparedStatement.setString(2, cliente.getEmail());
             preparedStatement.setString(3, cliente.getTelefone());

@@ -27,7 +27,7 @@ public class DevolucaoDAO {
     public int inserirDevolucao(Devolucao devolucao) {
         int id =0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, devolucao.getAluguel().getId());
             preparedStatement.setString(2, devolucao.getPagamento().obterMetodo());
             preparedStatement.executeUpdate();
