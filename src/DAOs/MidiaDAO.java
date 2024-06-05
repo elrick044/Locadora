@@ -26,7 +26,6 @@ public class MidiaDAO {
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());
 
-            preparedStatement.setString(3, "DISPONIVEL");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +38,7 @@ public class MidiaDAO {
             preparedStatement.setString(1, midia.getTitulo());
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());
-            preparedStatement.setString(3, "DISPONIVEL");
+
 
             preparedStatement.setInt(4, midia.getMidiaId());
             preparedStatement.executeUpdate();

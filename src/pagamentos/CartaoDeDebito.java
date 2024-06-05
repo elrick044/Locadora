@@ -5,5 +5,10 @@ public class CartaoDeDebito implements Pagamento{
     public void pagar() {
         System.out.println("Pagamento realizado com cartao de débito");
     }
+
+    @Override
+    public String obterMetodo() {
+        return "DEBITO";
+    }
 }
 

@@ -3,8 +3,26 @@ package movimentacao;
 import pagamentos.Pagamento;
 
 public class Devolucao {
+    private int id;
     private Aluguel aluguel;
     private Pagamento pagamento;
+
+    public int getId() {
+        return id;
+    }
+
+    public Devolucao() {
+    }
+
+    public Devolucao(int id, Aluguel aluguel, Pagamento pagamento) {
+        this.id = id;
+        this.aluguel = aluguel;
+        this.pagamento = pagamento;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void pagar() {
         pagamento.pagar();

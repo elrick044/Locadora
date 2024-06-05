@@ -5,4 +5,9 @@ public class Dinheiro implements Pagamento{
     public void pagar() {
         System.out.println("Pagamento realizado com dinheiro");
     }
+
+    @Override
+    public String obterMetodo() {
+        return "DINHEIRO";
+    }
 }

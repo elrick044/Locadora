@@ -1,17 +1,16 @@
 package com.company;
 
-import DAOs.AluguelDAO;
-import DAOs.MidiaDAO;
+import DAOs.*;
 import bd.DatabaseConnection;
 import controller.ClienteController;
 import controller.MidiaController;
 import factory.MediaFactory;
-import model.Categoria;
-import model.Cliente;
-import model.Genero;
-import model.Midia;
+import model.*;
 import model.state.Disponivel;
 import model.state.Estado;
+import movimentacao.Aluguel;
+import movimentacao.Devolucao;
+import pagamentos.Pix;
 import view.ViewCliente;
 import view.ViewMain;
 import view.ViewMidia;
@@ -22,13 +21,27 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args)  {
-        IView v = new ViewMain();
+        //
+        Endereco endereco = new Endereco("Rua da agua", "Cidade de Deus", "Parana", "85460-000");
+        Cliente cliente = new Cliente("Erick", "erickkgsbr@gmail.com", "999707070", endereco, "ericklindx");
+        Aluguel aluguel = new Aluguel(0, cliente, new ArrayList<Midia>(), new Date(), new Date(), 44);
+        Devolucao devolucao = new Devolucao(0, aluguel, new Pix());
+
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        AluguelDAO aluguelDAO = new AluguelDAO();
+        DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
+
+        enderecoDAO.
+        //
+        /*IView v = new ViewMain();
         List<Midia> m = new ArrayList<Midia>();
         List<Cliente> c = new ArrayList<Cliente>();
         m.add(MediaFactory.createMedia(1, "Jorge", Arrays.asList(Genero.AVENTURA, Genero.ANIMACAO), Categoria.FILME, new Disponivel()));
@@ -58,7 +71,7 @@ public class Main {
             if(op == 3){
                 break;
             }
-        }
+        }*/
 
 
 
