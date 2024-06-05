@@ -20,18 +20,29 @@ public class MidiaDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Midia";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Midia WHERE midiaId = ?";
 
-    public void inserirMidia(Midia midia) {
+    public int inserirMidia(Midia midia) {
+        int id = 0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, midia.getTitulo());
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());
             preparedStatement.setString(4, midia.getGenero().name());
 
             preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1); // Get the first generated key
+                } else {
+                    throw new SQLException("A criação do endereço falhou, nenhum ID obtido.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return id;
     }
 
     public void atualizarMidia(Midia midia) {
@@ -76,7 +87,6 @@ public class MidiaDAO {
 
                 switch (estado) {
                     case "DISPONIVEL" -> midia.setEstado(new Disponivel());
-                    case "RESERVADO" -> midia.setEstado(new Reservado());
                     case "ALUGADO" -> midia.setEstado(new Alugado());
                 }
 
@@ -105,7 +115,6 @@ public class MidiaDAO {
 
                     switch (estado) {
                         case "DISPONIVEL" -> midia.setEstado(new Disponivel());
-                        case "RESERVADO" -> midia.setEstado(new Reservado());
                         case "ALUGADO" -> midia.setEstado(new Alugado());
                     }
                 }

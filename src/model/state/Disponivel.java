@@ -20,17 +20,6 @@ public class Disponivel implements Estado {
     }
 
     @Override
-    public void reservar(Midia m) {
-        System.out.println("Item reservado com sucesso.");
-        m.setEstado(new Reservado());
-    }
-
-    @Override
-    public void cancelarReserva(Midia m) {
-        System.out.println("O item não está reservado.");
-    }
-
-    @Override
     public String obterEstado() {
         return "DISPONIVEL";
     }

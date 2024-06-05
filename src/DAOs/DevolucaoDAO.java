@@ -24,15 +24,27 @@ public class DevolucaoDAO {
 
     private final AluguelDAO aluguelDAO = DAOFactory.criarAluguelDAO();
 
-    public void inserirDevolucao(Devolucao devolucao) {
+    public int inserirDevolucao(Devolucao devolucao) {
+        int id =0;
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, devolucao.getAluguel().getId());
             preparedStatement.setString(2, devolucao.getPagamento().obterMetodo());
             preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1); // Get the first generated key
+                } else {
+                    throw new SQLException("A criação do endereço falhou, nenhum ID obtido.");
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return id;
     }
 
     public void atualizarDevolucao(Devolucao devolucao) {
@@ -61,36 +73,48 @@ public class DevolucaoDAO {
 
     public List<Devolucao> listarDevolucoes() {
         List<Devolucao> devolucoes = new ArrayList<>();
+        AluguelDAO aluguelDAO = new AluguelDAO(); // Instância do DAO de Aluguel
+        List<Integer> aluguelIds = new ArrayList<>(); // Lista para armazenar os IDs dos aluguéis
+
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_QUERY);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 Devolucao devolucao = new Devolucao();
                 devolucao.setId(resultSet.getInt("id"));
-                devolucao.getAluguel().setId(resultSet.getInt("aluguelId"));
+
+                int aluguelId = resultSet.getInt("aluguelId");
+                aluguelIds.add(aluguelId); // Adicionar o ID do aluguel à lista
 
                 String pagamento = resultSet.getString("pagamento");
 
-                switch (pagamento){
+                switch (pagamento) {
                     case "PIX" -> devolucao.setPagamento(new Pix());
                     case "DINHEIRO" -> devolucao.setPagamento(new Dinheiro());
                     case "DEBITO" -> devolucao.setPagamento(new CartaoDeDebito());
                     case "CREDITO" -> devolucao.setPagamento(new CartaoDeCredito());
                 }
 
-
-
                 devolucoes.add(devolucao);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Associar os aluguéis após o loop principal
+        for (int i = 0; i < devolucoes.size(); i++) {
+            Devolucao devolucao = devolucoes.get(i);
+            int aluguelId = aluguelIds.get(i);
+            devolucao.setAluguel(aluguelDAO.buscarAluguelPorId(aluguelId)); // Buscar e associar o aluguel pelo ID
+        }
+
         return devolucoes;
     }
 
     public Devolucao buscarDevolucaoPorId(int id) {
         Devolucao devolucao = null;
         int idAluguel = 0;
+        AluguelDAO aluguelDAO = new AluguelDAO(); // Instância do DAO de Aluguel
 
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
@@ -100,12 +124,11 @@ public class DevolucaoDAO {
                     devolucao = new Devolucao();
                     devolucao.setId(resultSet.getInt("id"));
 
-                    idAluguel = resultSet.getInt("aluguelId");
-                    //devolucao.getAluguel().setId(resultSet.getInt("aluguelId"));
+                    idAluguel = resultSet.getInt("aluguelId"); // Salvar o ID do aluguel
 
                     String pagamento = resultSet.getString("pagamento");
 
-                    switch (pagamento){
+                    switch (pagamento) {
                         case "PIX" -> devolucao.setPagamento(new Pix());
                         case "DINHEIRO" -> devolucao.setPagamento(new Dinheiro());
                         case "DEBITO" -> devolucao.setPagamento(new CartaoDeDebito());
@@ -117,10 +140,12 @@ public class DevolucaoDAO {
             e.printStackTrace();
         }
 
-        if(idAluguel > 0){
+        // Associar o aluguel após fechar o ResultSet
+        if (idAluguel > 0 && devolucao != null) {
             devolucao.setAluguel(aluguelDAO.buscarAluguelPorId(idAluguel));
         }
 
         return devolucao;
     }
+
 }
