@@ -21,6 +21,8 @@ public class DevolucaoDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Devolucao";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Devolucao WHERE id = ?";
 
+    private final AluguelDAO aluguelDAO = new AluguelDAO();
+
     public void inserirDevolucao(Devolucao devolucao) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
@@ -87,6 +89,8 @@ public class DevolucaoDAO {
 
     public Devolucao buscarDevolucaoPorId(int id) {
         Devolucao devolucao = null;
+        int idAluguel = 0;
+
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             preparedStatement.setInt(1, id);
@@ -94,7 +98,9 @@ public class DevolucaoDAO {
                 if (resultSet.next()) {
                     devolucao = new Devolucao();
                     devolucao.setId(resultSet.getInt("id"));
-                    devolucao.getAluguel().setId(resultSet.getInt("aluguelId"));
+
+                    idAluguel = resultSet.getInt("aluguelId");
+                    //devolucao.getAluguel().setId(resultSet.getInt("aluguelId"));
 
                     String pagamento = resultSet.getString("pagamento");
 
@@ -109,6 +115,11 @@ public class DevolucaoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        if(idAluguel > 0){
+            devolucao.setAluguel(aluguelDAO.buscarAluguelPorId(idAluguel));
+        }
+
         return devolucao;
     }
 }

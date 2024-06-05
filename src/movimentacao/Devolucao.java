@@ -11,6 +11,15 @@ public class Devolucao {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Devolucao{" +
+                "id=" + id +
+                ", aluguel=" + aluguel +
+                ", pagamento=" + pagamento +
+                '}';
+    }
+
     public Devolucao() {
     }
 

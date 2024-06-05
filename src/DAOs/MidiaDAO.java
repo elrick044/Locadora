@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MidiaDAO {
-    private static final String INSERT_QUERY = "INSERT INTO Midia (titulo, categoria, estado) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO Midia (titulo, categoria, estado, genero) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE Midia SET titulo = ?, categoria = ?, estado = ? WHERE midiaId = ?";
     private static final String DELETE_QUERY = "DELETE FROM Midia WHERE midiaId = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Midia";
@@ -25,6 +25,7 @@ public class MidiaDAO {
             preparedStatement.setString(1, midia.getTitulo());
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());
+            preparedStatement.setString(4, midia.getGenero().name());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
