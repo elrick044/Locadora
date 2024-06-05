@@ -80,30 +80,6 @@ public class MidiaController {
         }
     }
 
-    public void reservar(){
-        Midia aux = mdao.buscarMidiaPorId(v.lerID(m));
-        int pos = procurarPosicaoPorId(m, aux.getMidiaId());
-
-        if(pos == -1){
-            System.out.println("Erro");
-        }else {
-            m.get(pos).reservar();
-            atualizar(m.get(pos));
-        }
-    }
-
-    public void cancelarReserva(){
-        Midia aux = mdao.buscarMidiaPorId(v.lerID(m));
-        int pos = procurarPosicaoPorId(m, aux.getMidiaId());
-
-        if(pos == -1){
-            System.out.println("Erro");
-        }else {
-            m.get(pos).cancelarReserva();
-            atualizar(m.get(pos));
-        }
-    }
-
     public void adicionar(){
         mdao.inserirMidia((Midia) v.detalhar());
     }
