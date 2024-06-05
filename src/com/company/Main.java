@@ -29,22 +29,31 @@ public class Main {
 
     public static void main(String[] args)  {
         //
+
         Endereco endereco = new Endereco(1, "Rua da agua", "Cidade de Deus", "Parana", "85460-000");
         Cliente cliente = new Cliente(2,"Erick", "erickkgsbr@gmail.com", "999707070", endereco, "2222");
         Aluguel aluguel = new Aluguel(3, cliente, new ArrayList<Midia>(), new Date(), new Date(), 44);
         Devolucao devolucao = new Devolucao(1, aluguel, new Pix());
 
+        Midia midia = new Midia(0, "Erick", Genero.ACAO, Categoria.FILME, new Disponivel());
+
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
         AluguelDAO aluguelDAO = new AluguelDAO();
         DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
+        MidiaDAO midiaDAO = new MidiaDAO();
+
+        //midiaDAO.inserirMidia(midia);
+
+        System.out.println(midiaDAO.listarMidias().get(0));
+
 
         //enderecoDAO.inserirEndereco(endereco);
         //clienteDAO.inserirCliente(cliente);
         //aluguelDAO.inserirAluguel(aluguel);
         //devolucaoDAO.inserirDevolucao(devolucao);
 
-        System.out.println(devolucaoDAO.buscarDevolucaoPorId(3));
+        //System.out.println(devolucaoDAO.buscarDevolucaoPorId(3));
         //
         /*IView v = new ViewMain();
         List<Midia> m = new ArrayList<Midia>();

@@ -2,6 +2,7 @@ package DAOs;
 
 import bd.DatabaseConnection;
 import model.Categoria;
+import model.Genero;
 import model.Midia;
 import model.state.*;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class MidiaDAO {
     private static final String INSERT_QUERY = "INSERT INTO Midia (titulo, categoria, estado, genero) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE Midia SET titulo = ?, categoria = ?, estado = ? WHERE midiaId = ?";
+    private static final String UPDATE_QUERY = "UPDATE Midia SET titulo = ?, categoria = ?, estado = ?, genero = ? WHERE midiaId = ?";
     private static final String DELETE_QUERY = "DELETE FROM Midia WHERE midiaId = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM Midia";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Midia WHERE midiaId = ?";
@@ -39,9 +40,9 @@ public class MidiaDAO {
             preparedStatement.setString(1, midia.getTitulo());
             preparedStatement.setString(2, midia.getCategoria().name());
             preparedStatement.setString(3, midia.getEstado().obterEstado());
+            preparedStatement.setString(4, midia.getGenero().name());
+            preparedStatement.setInt(5, midia.getMidiaId());
 
-
-            preparedStatement.setInt(4, midia.getMidiaId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +68,9 @@ public class MidiaDAO {
                 Midia midia = new Midia();
                 midia.setMidiaId(resultSet.getInt("midiaId"));
                 midia.setTitulo(resultSet.getString("titulo"));
+
                 midia.setCategoria(Categoria.valueOf(resultSet.getString("categoria")));
+                midia.setGenero(Genero.valueOf(resultSet.getString("genero")));
 
                 String estado = resultSet.getString("estado");
 
@@ -98,6 +101,7 @@ public class MidiaDAO {
                     midia.setMidiaId(resultSet.getInt("midiaId"));
                     midia.setTitulo(resultSet.getString("titulo"));
                     midia.setCategoria(Categoria.valueOf(resultSet.getString("categoria")));
+                    midia.setGenero(Genero.valueOf(resultSet.getString("genero")));
                     String estado = resultSet.getString("estado");
 
                     switch (estado) {
