@@ -11,13 +11,6 @@ public class Endereco
     public Endereco() {
     }
 
-    public Endereco(int id, String rua, String cidade, String estado, String cep) {
-        this.id = id;
-        this.rua = rua;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-    }
     public Endereco(String rua, String cidade, String estado, String cep) {
         this.rua = rua;
         this.cidade = cidade;

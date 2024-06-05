@@ -8,8 +8,7 @@ import model.state.Estado;
 import java.util.List;
 
 public class MediaFactory {
-    public static Midia createMedia(int id, String titulo, Genero genero, Categoria categoria, Estado estado){
-        return new Midia(id, titulo, genero, categoria, estado);
-        //arrumei
+    public static Midia createMedia(String titulo, Genero genero, Categoria categoria, Estado estado){
+        return new Midia(titulo, genero, categoria, estado);
     }
 }

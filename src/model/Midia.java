@@ -23,6 +23,13 @@ public class Midia {
     public Midia() {
     }
 
+    public Midia(String titulo, Genero genero, Categoria categoria, Estado estado) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.categoria = categoria;
+        this.estado = estado;
+    }
+
     public Midia(int midiaId, String titulo, Genero genero, Categoria categoria, Estado estado) {
         this.midiaId = midiaId;
         this.titulo = titulo;

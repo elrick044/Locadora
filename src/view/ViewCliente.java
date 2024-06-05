@@ -20,8 +20,7 @@ public class ViewCliente implements IView<Cliente> {
         System.out.println("2. Cadastrar");
         System.out.println("3. Excluir");
         System.out.println("4. Editar");
-        System.out.println("5. Buscar");
-        System.out.println("6. Sair");
+        System.out.println("5. Sair");
         System.out.print("Escolha uma opção: ");
         return scanner.nextInt();
     }
@@ -79,7 +78,7 @@ public class ViewCliente implements IView<Cliente> {
     }
 
     @Override
-    public int lerID() {
+    public int lerID(List<Cliente> clientes) {
         System.out.print("Digite o ID da cliente: ");
         return scanner.nextInt();
     }

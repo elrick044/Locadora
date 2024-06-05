@@ -29,7 +29,7 @@ public class ViewMain implements IView<Object>{
     }
 
     @Override
-    public int lerID() {
+    public int lerID(List<Object> l) {
         return 0;
     }
 

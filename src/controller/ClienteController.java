@@ -1,5 +1,6 @@
 package controller;
 
+import DAOs.ClienteDAO;
 import model.Cliente;
 import view.IView;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class ClienteController {
     public List<Cliente> c;
     public IView v;
+    public ClienteDAO cdao = new ClienteDAO();
 
     public ClienteController(List<Cliente> c, IView v) {
         this.c = c;
@@ -21,6 +23,7 @@ public class ClienteController {
         int opcao;
         while(true) {
             System.out.println();
+            c = cdao.listarClientes();
             opcao = v.exibirMenu();
             switch (opcao) {
                 case 1:
@@ -28,7 +31,7 @@ public class ClienteController {
                     v.listar(c);
                     break;
                 case 2:
-                    cadastrar();
+                    adicionar();
                     break;
                 case 3:
                     excluir();
@@ -37,68 +40,33 @@ public class ClienteController {
                     editar();
                     break;
                 case 5:
-                    buscar();
-                    break;
-                case 6:
                     v.exibirMensagem("Saindo...");
                     break;
                 default:
                     v.exibirMensagem("Opção inválida.");
             }
 
-            if(opcao == 6){
+            if(opcao == 5){
                 break;
             }
         }
     }
-    public void cadastrar() {
-        Cliente novoCliente = (Cliente) v.detalhar();
-        c.add(novoCliente);
-    }
 
-    public void excluir(){
-        int idProcurado = v.lerID();
-        boolean achado = false;
-        for (Cliente cliente : c) {
-            if (cliente.getClienteId() == idProcurado) {
-                c.remove(cliente);
-                achado = true;
-                break;
-
-            }
-        }
-        if (!achado) {
-            System.out.println("Não existe usuário com esse id");
-        }
+    public void adicionar() {
+        cdao.inserirCliente((Cliente) v.detalhar());
     }
 
     public void editar(){
-        int idProcurado = v.lerID();
-        boolean achado = false;
-        for (Cliente cliente : c) {
-            if (cliente.getClienteId() == idProcurado) {
-                cliente = (Cliente) v.detalhar();
-                achado = true;
-                break;
-            }
-        }
-        if (!achado) {
-            System.out.println("Não existe usuário com esse id");
-        }
+        Cliente select = cdao.buscarClientePorId(v.lerID(c));
+        System.out.println("Estes são os dados atuais: \n" + select.toString() + "\n");
+
+        Cliente aux = (Cliente) v.detalhar();
+        aux.setClienteId(select.getClienteId());
+
+        cdao.atualizarCliente(aux);
     }
 
-    public void buscar(){
-        int idProcurado = v.lerID();
-        boolean achado = false;
-        for (Cliente cliente : c) {
-            if (cliente.getClienteId() == idProcurado) {
-                System.out.println(cliente);
-                achado = true;
-                break;
-            }
-        }
-        if (!achado) {
-            System.out.println("Não existe usuário com esse id");
-        }
+    public void excluir(){
+        cdao.excluirCliente(v.lerID(c));
     }
 }

@@ -9,6 +9,6 @@ public interface IView<T> {
      int exibirMenu();
      void listar(List<T> o);
      T detalhar();
-     int lerID();
+     int lerID(List<T> o);
      void exibirMensagem(String mensagem);
 }
