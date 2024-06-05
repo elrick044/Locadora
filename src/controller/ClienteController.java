@@ -1,8 +1,5 @@
 package controller;
 
-import Controller.AuthUser;
-import Controller.StrongEmailValidator;
-import Controller.StrongPasswordValidator;
 import model.Cliente;
 import view.IView;
 
@@ -55,39 +52,53 @@ public class ClienteController {
         }
     }
     public void cadastrar() {
-        Object novoCliente = v.detalhar();
-        String email = null;
-        String senha = null;
-        String nome = null;
-
-        try{
-            Method getEmailMethod = novoCliente.getClass().getMethod("getEmail",null);
-            email = (String) getEmailMethod.invoke(novoCliente);
-
-            Method getSenhaMethod = novoCliente.getClass().getMethod("getSenha",null);
-            senha = (String) getEmailMethod.invoke(novoCliente);
-
-            Method getNomeMethod = novoCliente.getClass().getMethod("getNome",null);
-            nome = (String) getEmailMethod.invoke(novoCliente);
-
-        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        AuthUser a = new AuthUser(new StrongEmailValidator(),new StrongPasswordValidator());
-        //if(a.autenticar(email, senha, nome)) c.add((Cliente) novoCliente);
+        Cliente novoCliente = (Cliente) v.detalhar();
+        c.add(novoCliente);
     }
 
     public void excluir(){
+        int idProcurado = v.lerID();
+        boolean achado = false;
+        for (Cliente cliente : c) {
+            if (cliente.getClienteId() == idProcurado) {
+                c.remove(cliente);
+                achado = true;
+                break;
 
+            }
+        }
+        if (!achado) {
+            System.out.println("Não existe usuário com esse id");
+        }
     }
 
     public void editar(){
-
+        int idProcurado = v.lerID();
+        boolean achado = false;
+        for (Cliente cliente : c) {
+            if (cliente.getClienteId() == idProcurado) {
+                cliente = (Cliente) v.detalhar();
+                achado = true;
+                break;
+            }
+        }
+        if (!achado) {
+            System.out.println("Não existe usuário com esse id");
+        }
     }
 
     public void buscar(){
-
+        int idProcurado = v.lerID();
+        boolean achado = false;
+        for (Cliente cliente : c) {
+            if (cliente.getClienteId() == idProcurado) {
+                System.out.println(cliente);
+                achado = true;
+                break;
+            }
+        }
+        if (!achado) {
+            System.out.println("Não existe usuário com esse id");
+        }
     }
 }

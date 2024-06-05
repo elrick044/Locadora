@@ -102,6 +102,8 @@ public class Cliente {
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco=" + endereco +
+                ", senha='" + senha + '\'' +
+                ", alugueis=" + alugueis +
                 '}';
     }
 }
