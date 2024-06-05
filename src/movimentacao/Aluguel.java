@@ -3,6 +3,7 @@ package movimentacao;
 import model.Cliente;
 import model.Midia;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,14 +37,20 @@ public class Aluguel {
 
     @Override
     public String toString() {
-        return "Aluguel{" +
-                "id=" + id +
-                ", cliente=" + cliente +
-                ", midias=" + midias +
-                ", dataAluguel=" + dataAluguel +
-                ", dataDevolucao=" + dataDevolucao +
-                ", preco=" + preco +
-                '}';
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String result = "Aluguel ID: " + id + "\n"
+                + "Cliente: " + cliente + "\n"
+                + "Mídias:\n";
+
+        for (Midia midia : midias) {
+            result += "  - " + midia + "\n";
+        }
+
+        result += "Data de Aluguel: " + dateFormat.format(dataAluguel) + "\n"
+                + "Data de Devolução: " + dateFormat.format(dataDevolucao) + "\n"
+                + "Preço: R$ " + String.format("%.2f", preco) + "\n";
+
+        return result;
     }
 
     public int getId() {

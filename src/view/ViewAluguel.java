@@ -2,6 +2,7 @@ package view;
 
 import DAOs.ClienteDAO;
 import DAOs.MidiaDAO;
+import factory.AluguelFactory;
 import model.Cliente;
 import model.Genero;
 import model.Midia;
@@ -83,7 +84,7 @@ public class ViewAluguel implements IView<Aluguel>{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Aluguel(auxC, (ArrayList<Midia>) alugados, dataAluguel, dataDevolucao, preco);
+        return AluguelFactory.createAluguel(auxC, (ArrayList<Midia>) alugados, dataAluguel, dataDevolucao, preco);
     }
 
     @Override

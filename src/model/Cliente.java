@@ -82,13 +82,17 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "clienteId=" + clienteId +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", endereco=" + endereco +
-                ", alugueis=" + alugueis +
-                '}';
+        String result = "Cliente ID: " + clienteId + "\n"
+                + "Nome: " + name + "\n"
+                + "Email: " + email + "\n"
+                + "Telefone: " + telefone + "\n"
+                + "Endereço: " + endereco + "\n"
+                + "Aluguéis:\n";
+        if(!(alugueis == null)){
+            for (Aluguel aluguel : alugueis) {
+                result += "  - " + aluguel + "\n";
+            }
+        }
+        return result;
     }
 }

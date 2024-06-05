@@ -1,8 +1,7 @@
 package controller;
 
-import DAOs.AluguelDAO;
 import DAOs.DevolucaoDAO;
-import movimentacao.Aluguel;
+import factory.DAOFactory;
 import movimentacao.Devolucao;
 import view.IView;
 import view.ViewMidia;
@@ -12,7 +11,7 @@ import java.util.List;
 public class DevolucaoController {
     public List<Devolucao> d;
     public IView v;
-    public DevolucaoDAO ddao = new DevolucaoDAO();
+    public DevolucaoDAO ddao = DAOFactory.criarDevolucaoDAO();
 
     public DevolucaoController(List<Devolucao> d, IView v) {
         this.d = d;

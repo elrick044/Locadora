@@ -6,7 +6,6 @@ import model.Genero;
 import model.Midia;
 import model.state.Disponivel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,6 +73,6 @@ public class ViewMidia implements IView<Midia>{
         scanner.nextLine(); // Consumir a nova linha
         Categoria categoria = Categoria.values()[categoriaIndex];
 
-        return MediaFactory.createMedia(titulo, genero, categoria, new Disponivel());
+        return MediaFactory.createMidia(titulo, genero, categoria, new Disponivel());
     }
 }

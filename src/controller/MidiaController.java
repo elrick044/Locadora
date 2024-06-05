@@ -2,6 +2,7 @@ package controller;
 
 import DAOs.AluguelDAO;
 import DAOs.MidiaDAO;
+import factory.DAOFactory;
 import model.Categoria;
 import model.Genero;
 import model.Midia;
@@ -14,8 +15,8 @@ import java.util.List;
 public class MidiaController {
     public List<Midia> m;
     public IView v;
-    public MidiaDAO mdao = new MidiaDAO();
-    public AluguelDAO adao = new AluguelDAO();
+    public MidiaDAO mdao = DAOFactory.criarMidiaDAO();
+    public AluguelDAO adao = DAOFactory.criarAluguelDAO();
 
     public MidiaController(List<Midia> midias, IView view) {
         this.m = midias;

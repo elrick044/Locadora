@@ -1,8 +1,7 @@
 package controller;
 
 import DAOs.AluguelDAO;
-import DAOs.MidiaDAO;
-import factory.MediaFactory;
+import factory.DAOFactory;
 import movimentacao.Aluguel;
 import view.IView;
 import view.ViewMidia;
@@ -12,7 +11,7 @@ import java.util.List;
 public class AluguelController {
     public List<Aluguel> a;
     public IView v;
-    public AluguelDAO adao = new AluguelDAO();
+    public AluguelDAO adao = DAOFactory.criarAluguelDAO();
 
     public AluguelController(List<Aluguel> a, IView v) {
         this.a = a;

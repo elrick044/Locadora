@@ -2,6 +2,7 @@ package controller;
 
 import DAOs.ClienteDAO;
 import DAOs.EnderecoDAO;
+import factory.DAOFactory;
 import model.Cliente;
 import model.Endereco;
 import view.IView;
@@ -14,8 +15,8 @@ import java.util.List;
 public class ClienteController {
     public List<Cliente> c;
     public IView v;
-    public ClienteDAO cdao = new ClienteDAO();
-    public EnderecoDAO edao = new EnderecoDAO();
+    public ClienteDAO cdao = DAOFactory.criarClienteDAO();
+    public EnderecoDAO edao = DAOFactory.criarEnderecoDAO();
 
     public ClienteController(List<Cliente> c, IView v) {
         this.c = c;

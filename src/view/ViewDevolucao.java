@@ -1,6 +1,7 @@
 package view;
 
 import DAOs.AluguelDAO;
+import factory.DevolucaoFactory;
 import model.Cliente;
 import movimentacao.Aluguel;
 import movimentacao.Devolucao;
@@ -67,7 +68,7 @@ public class ViewDevolucao implements IView<Devolucao>{
                 p = new CartaoDeDebito();
         }
 
-        return new Devolucao(auxA, p);
+        return DevolucaoFactory.createDevolucao(auxA, p);
     }
 
     @Override

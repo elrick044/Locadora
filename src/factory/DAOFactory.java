@@ -11,7 +11,7 @@ public class DAOFactory{
         return new ClienteDAO();
     }
 
-    public static DevolucaoDAO criarDEvolucaoDAO() {
+    public static DevolucaoDAO criarDevolucaoDAO() {
         return new DevolucaoDAO();
     }
 

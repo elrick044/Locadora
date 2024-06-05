@@ -24,13 +24,7 @@ public class Endereco
 
     @Override
     public String toString() {
-        return "Endereco{" +
-                "id=" + id +
-                ", rua='" + rua + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", cep='" + cep + '\'' +
-                '}';
+        return rua + ", " + cidade + ", " + estado + ", " + cep;
     }
 
     public void setId(int id) {

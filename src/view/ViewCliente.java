@@ -28,8 +28,11 @@ public class ViewCliente implements IView<Cliente> {
 
     @Override
     public void listar(List<Cliente> clientes) {
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
+        for (int i = 0; i < clientes.size(); i++) {
+            System.out.println(clientes.get(i).toString());
+            if (i < clientes.size() - 1) {
+                System.out.println();
+            }
         }
     }
 
@@ -73,6 +76,10 @@ public class ViewCliente implements IView<Cliente> {
 
     @Override
     public int lerID(List<Cliente> clientes) {
+        System.out.println("\nEscolha um cliente: ");
+        for (Cliente c : clientes) {
+            System.out.println(c.toString() + "\n");
+        }
         System.out.print("Digite o ID da cliente: ");
         return scanner.nextInt();
     }
